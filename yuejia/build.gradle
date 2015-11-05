@@ -1,0 +1,380 @@
+
+repositories {
+//    maven { url 'http://maven.oschina.net/content/groups/public/' }
+  mavenLocal()
+  mavenCentral()
+  maven { url "http://115.29.11.157:8081/nexus/index.html" }
+// maven { url "http://repo.spring.io/libs-release" }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        //https://github.com/Khoulaiz/gradle-jetty-eclipse-plugin
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+    }
+}
+
+apply plugin: 'jettyEclipse'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: "eclipse"
+apply plugin: 'application'
+
+group = "cn.edaijia"
+version = "1.0"
+description = 'yuejia'
+
+war.archiveName = 'ROOT.war'
+
+eclipse {
+    classpath {
+        // 设置classes output目录
+        defaultOutputDir = file('build')
+    }
+}
+
+jettyEclipse {
+    // Defaults
+    // httpPort = 8080
+    // stopPort = 8090
+    // stopKey = "stop"
+    // contextPath = '/'
+    // scanIntervalInSeconds = 5
+    // automaticReload = false
+    // rebuildIntervalInSeconds = 0
+    // webDefaultXml = new File('webLocal.xml')
+}
+
+mainClassName = ''
+jar {
+    baseName = 'yuejia'
+    version =  '1.0'
+}
+
+dependencies {
+  compile("org.springframework:spring-context:4.0.8.RELEASE")
+	compile("org.springframework:spring-context-support:4.0.8.RELEASE")
+	compile('org.springframework:spring-jdbc:4.0.8.RELEASE')
+  compile "org.springframework:spring-webmvc:4.0.8.RELEASE"
+  compile "org.springframework:spring-context:4.0.8.RELEASE"
+  compile "org.springframework:spring-web:4.0.8.RELEASE"
+  compile "org.springframework:spring-beans:4.0.8.RELEASE"
+  compile "org.springframework.security:spring-security-web:4.0.1.RELEASE"
+  compile "org.springframework.security:spring-security-config:4.0.1.RELEASE"
+  
+  // mybatis
+  compile "org.mybatis:mybatis-spring"
+  compile "org.mybatis:mybatis"
+
+  // log
+  compile "ch.qos.logback:logback"
+
+  // json Gson
+
+  // redis
+
+  // mysql
+
+  // 
+  
+  //compile 'org.aspectj:aspectjweaver:1.8.4'
+
+  compile 'org.apache.thrift:libfb303:0.9.1'
+  compile 'commons-beanutils:commons-beanutils:1.9.1'
+
+  compile 'com.google.guava:guava:18.0'
+  compile 'joda-time:joda-time:2.7'
+  compile 'cn.jpush.api:jpush-client:3.1.3'
+
+  compile 'org.json:json:20140107'
+  compile 'mysql:mysql-connector-java:5.1.30'
+  compile 'redis.clients:jedis:2.4.2'
+  compile 'commons-codec:commons-codec:1.9'
+  compile 'commons-dbcp:commons-dbcp:1.4'
+
+	compile 'log4j:log4j:1.2.17'
+  compile 'org.slf4j:slf4j-api:1.7.7'
+  compile 'org.slf4j:slf4j-log4j12:1.7.7'
+
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
+  compile "commons-lang:commons-lang:2.6"
+  compile 'org.apache.commons:commons-lang3:3.4'
+  compile "commons-jexl:commons-jexl:1.1"
+  compile "commons-collections:commons-collections:3.2.1"
+  compile 'commons-io:commons-io:2.4'
+  compile "commons-fileupload:commons-fileupload:1.2.2
+  compile "commons-configuration:commons-configuration:1.10"
+
+  compile "org.apache.velocity:velocity:1.7"
+  compile "org.apache.velocity:velocity-tools:2.0"
+  compile 'org.apache.zookeeper:zookeeper:3.4.6'
+  compile 'org.apache.curator:curator-framework:2.8.0'
+  compile 'org.apache.curator:curator-x-discovery:2.8.0'
+
+  compile "org.hsqldb:hsqldb:2.2.8"
+
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+  compile 'com.fasterxml.jackson.core:jackson-core:2.4.3'
+  compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.3'
+  compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.3'
+  compile 'com.fasterxml.jackson.module:jackson-module-jsonSchema:2.4.3'
+
+  compile 'me.chanjar:weixin-java-common:1.0.4'
+  compile 'me.chanjar:weixin-java-mp:1.0.4'
+
+  compile 'org.xerial:sqlite-jdbc:3.7.2'
+    
+  compile 'commons-httpclient:commons-httpclient:3.1'
+  compile 'com.google.protobuf:protobuf-java:3.0.0-alpha-3.1'
+  //compile 'org.quartz-scheduler:quartz:2.2.1'
+  compile 'com.hubspot.jackson:jackson-datatype-protobuf:0.7.0'
+
+  compile 'redis.clients:jedis:2.7.2'
+  compile 'commons-cli:commons-cli:1.3'
+  compile 'com.googlecode.concurrent-trees:concurrent-trees:2.4.0'
+
+  compile 'org.jsoup:jsoup:1.8.3'
+  compile 'com.qiniu:qiniu-java-sdk:7.0.+'
+    
+  compile 'javax.mail:mail:1.4'
+  compile 'org.freemarker:freemarker:2.3.22'
+  compile 'com.github.stuxuhai:jpinyin:1.0'
+  
+  compile 'org.perf4j:perf4j:0.9.16'
+  //compile 'com.wandoulabs.jodis:jodis:0.1.2'
+    
+  testCompile 'junit:junit:4.11'
+  testCompile 'org.springframework:spring-test:4.1.0.RELEASE'
+  testCompile "org.mockito:mockito-core:1.+"
+
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+task testjar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.toroback.app.Application'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task onlineWar(type: War) {
+    archiveName = "ROOT.war"
+    webXml = file('src/main/webapp/WEB-INF/conf/web.online.xml')
+}
+
+
+task testWar(type: War) {
+    archiveName = "ROOT.war"
+    webXml = file('src/main/webapp/WEB-INF/conf/web.test.xml')
+}
+
+def checkEnv() {
+    if (project.hasProperty("env")) {
+        switch (project["env"]) {
+            case "online":
+            case "dev":
+            case "local":
+            case "testcase":
+                return project["env"]
+            default:
+                return "local"
+        }
+    }
+    return "local"
+}
+
+task checkEnv {
+    envConfig = checkEnv()
+    doLast {
+        println ">> env=${envConfig}"
+        writeFile(envFile, envConfig)
+    }
+}
+
+def envExcludes(env) {
+    switch (env) {
+        case "online":
+            ["**/*.dev.*", "**/*.local.*", "**/*.testcase.*"]
+            break
+        case "dev":
+            ["**/*.online.*", "**/*.local.*", "**/*.testcase.*"]
+            break
+        case "local":
+            ["**/*.online.*", "**/*.dev.*", "**/*.testcase.*"]
+            break
+        case "testcase":
+            ["**/*.online.*", "**/*.dev.*", "**/*.local.*"]
+            break
+        default:
+            ["**/*.online.*", "**/*.dev.*", "**/*.local.*"]
+    }
+}
+
+task prepareConfig(type: Copy) {
+    dependsOn checkEnv
+    from confDir
+    into buildConfDir
+    exclude envExcludes(envConfig)
+    eachFile { FileCopyDetails file -> println "> copy: ${file.getSourcePath()}"}
+    doFirst {
+        println ">> copy from ${confDir} into ${buildConfDir}"
+    }
+    doLast {
+        println ">> rename:"
+        ConfigurableFileTree tree = project.fileTree(dir: buildConfDir, include: "**/*.${envConfig}.*")
+        tree.each{
+            File file->
+                File dir = file.getParentFile()
+                String oldName = file.getName()
+                String newName = oldName.replace(".${envConfig}", "")
+                file.renameTo(new File(dir, newName))
+                println "> rename: ${oldName} => ${newName}"
+        }
+    }
+}
+
+def getGitVersion() {
+    return "git rev-parse --short HEAD".execute().text.trim()
+}
+def getGitBranch() {
+    for (String s in "git branch".execute().text.split("\n")) {
+        s = s.trim()
+        if (s.startsWith("* ")) {
+            return s.substring(2)
+        }
+    }
+}
+def getGitMark() {
+    return "${getGitBranch()}_${getGitVersion()}"
+}
+def writeFile(filePath, content) {
+    File out = file(filePath)
+    File parent = file(out.getParent())
+    if (!parent.exists()) {
+        parent.mkdirs()
+    }
+    FileWriter writer = new FileWriter(out)
+    writer.write(content)
+    writer.close()
+    println "write into ${filePath}"
+}
+task gitVersion << {
+    println ">> HEAD version: ${getGitVersion()}"
+}
+task gitBranch << {
+    println ">> HEAD branch: ${getGitBranch()}"
+}
+task gitMark {
+    String mark = getGitMark()
+    println ">> HEAD mark: ${mark}"
+    writeFile(versionFile, mark)
+}
+
+war {
+    if (project.hasProperty("warDir")) {
+        destinationDir = file(project["warDir"])
+        println "* change warDir to: " + destinationDir
+    }
+    archiveName = "ROOT.war"
+    dependsOn prepareConfig
+    into ("WEB-INF/conf") { from buildConfDir }
+    webXml = file("${confDir}/web.${envConfig}.xml")
+    doLast {
+        println ">> war into: " + destinationDir
+    }
+}
+
+jettyEclipseRun {
+    dependsOn prepareConfig
+    requestLog = new File(project.buildDir, "request.log")
+}
+
+def getInstallDir() {
+    return project.hasProperty("installDir") ? project["installDir"] : defaultInstallDir
+}
+def installSpec = copySpec {
+    into ("libs") {
+        from configurations.runtime
+        from ("${buildDir}/libs") {
+            include "*.jar"
+        }
+    }
+    into ("bin") {
+        from("scripts")
+    }
+    into ("conf") {
+        from buildConfDir
+    }
+    into ("resources") {
+        from mainResourceDir
+    }
+    into ("webapp") {
+        from webAppDir
+    }
+}
+task install(type: Copy) {
+    dependsOn jar, prepareConfig
+    String dir = getInstallDir()
+    into "${dir}"
+    with installSpec
+    doLast {
+        println ">> install into ${dir}"
+    }
+}
+
+def getDate() {
+    return "date +%Y%m%d".execute().text.trim()
+}
+task zip(type: Zip) {
+    dependsOn jar, prepareConfig
+    if (project.hasProperty("zipDir")) {
+        destinationDir = new File(project["zipDir"])
+        println "* change zipDir to: " + destinationDir
+    }
+    with installSpec
+    doLast{
+        println ">> zip into: " + destinationDir
+    }
+}
+
+task publish(type: Copy) {
+    dependsOn war, zip
+    if (project.hasProperty("publishDir")) {
+        destinationDir = file(project["publishDir"])
+    } else {
+        String baseDir = (getDate() + "_" + getGitMark()).replace("/", "_")
+//        destinationDir = file("publish/${envConfig}/${baseDir}")
+        destinationDir = file("/global/release/${envConfig}/${baseDir}")
+    }
+    from (project.war.destinationDir) {
+        include project.war.archiveName
+    }
+    from (project.zip.destinationDir) {
+        include project.zip.archiveName
+    }
+    eachFile {FileCopyDetails file -> println "${file.getSourcePath()} => ${destinationDir}/${file.getPath()}" }
+    doLast {
+        println ">> publish into: " + destinationDir
+        String date = "date".execute().text.trim()
+        println ">> publish time: $date"
+        writeFile("${destinationDir}/publish.time", date)
+    }
+}
+task copyJars(type: Copy) {
+  from configurations.runtime
+  into 'build/dependency-jar/' // 目标位置
+}
+

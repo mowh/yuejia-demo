@@ -1,0 +1,10 @@
+/.gradle/
+/.settings/
+/.classpath
+/.project
+/build/
+/bin/
+/install
+/jettyRun
+/pid
+velocity.log
